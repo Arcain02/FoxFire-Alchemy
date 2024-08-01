@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://d23hufw16h5j1"]
+
+[ext_resource type="Texture2D" uid="uid://vkqnlpiup4rp" path="res://Assets/Booklet/Book.png" id="1_pn7en"]
+[ext_resource type="FontFile" uid="uid://djdgsdvyd6v8k" path="res://Assets/Corset 8 Basic.ttf" id="2_gcsl8"]
+[ext_resource type="Texture2D" uid="uid://cfws35pjixi7l" path="res://Assets/Booklet/BirchTree.png" id="3_qviwg"]
+[ext_resource type="Texture2D" uid="uid://bif8774kp5cw8" path="res://Assets/Booklet/Mushroom.png" id="4_mt85e"]
+
+[node name="BookMenu" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 544.0
+
+[node name="Booklet" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 240.0
+offset_bottom = 120.0
+scale = Vector2(5, 5)
+texture = ExtResource("1_pn7en")
+
+[node name="BirchLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 368.0
+offset_right = 408.0
+offset_bottom = 432.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_gcsl8")
+theme_override_font_sizes/normal_font_size = 32
+text = "Found east of your home."
+
+[node name="Birch" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 96.0
+offset_right = 243.0
+offset_bottom = 180.0
+scale = Vector2(3, 3)
+texture = ExtResource("3_qviwg")
+
+[node name="BirchCollected" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 56.0
+offset_right = 344.0
+offset_bottom = 96.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_gcsl8")
+theme_override_font_sizes/normal_font_size = 32
+text = "Collected!"
+
+[node name="MushroomLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 368.0
+offset_right = 824.0
+offset_bottom = 432.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_gcsl8")
+theme_override_font_sizes/normal_font_size = 32
+text = "Found in a cavern to the north."
+
+[node name="Mushroom" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 616.0
+offset_top = 200.0
+offset_right = 656.0
+offset_bottom = 240.0
+scale = Vector2(3, 3)
+texture = ExtResource("4_mt85e")
+
+[node name="MushroomCollected" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 616.0
+offset_top = 56.0
+offset_right = 760.0
+offset_bottom = 96.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_gcsl8")
+theme_override_font_sizes/normal_font_size = 32
+text = "Collected!"

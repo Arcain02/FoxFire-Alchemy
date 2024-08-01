@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://dha2g71f7mqty"]
+
+[ext_resource type="Texture2D" uid="uid://e03sj6b7vb4e" path="res://Assets/UI Items/SpellButtonO.png" id="1_gfyxx"]
+[ext_resource type="Texture2D" uid="uid://dgs8o4n63oe2m" path="res://Assets/UI Items/SpellButtonP.png" id="2_i5ub8"]
+[ext_resource type="Texture2D" uid="uid://cf8vi72pkx3s7" path="res://Assets/UI Items/TabButton.png" id="3_03ers"]
+[ext_resource type="FontFile" uid="uid://djdgsdvyd6v8k" path="res://Assets/Corset 8 Basic.ttf" id="3_5kvdt"]
+
+[node name="UI" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="."]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EButton" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 464.0
+offset_right = 888.0
+offset_bottom = 496.0
+texture = ExtResource("1_gfyxx")
+
+[node name="RButton" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 504.0
+offset_right = 888.0
+offset_bottom = 536.0
+texture = ExtResource("2_i5ub8")
+
+[node name="TabButton" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 91.0
+offset_bottom = 40.0
+texture = ExtResource("3_03ers")
+
+[node name="BurnLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 464.0
+offset_right = 960.0
+offset_bottom = 496.0
+theme_override_fonts/normal_font = ExtResource("3_5kvdt")
+theme_override_font_sizes/normal_font_size = 32
+text = "Burn"
+
+[node name="Push" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 504.0
+offset_right = 960.0
+offset_bottom = 536.0
+theme_override_fonts/normal_font = ExtResource("3_5kvdt")
+theme_override_font_sizes/normal_font_size = 32
+text = "Push"
+
+[node name="Tab" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("3_5kvdt")
+theme_override_font_sizes/normal_font_size = 32
+text = "Booklet"

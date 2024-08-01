@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3rjv1suoment"]
+
+[ext_resource type="Script" path="res://Scripts/RockScript.gd" id="1_k37ie"]
+[ext_resource type="Texture2D" uid="uid://c4vbhjovi7qk5" path="res://Assets/Forest/Rock.png" id="2_23l8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_468di"]
+size = Vector2(16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6svd"]
+atlas = ExtResource("2_23l8h")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx31v"]
+atlas = ExtResource("2_23l8h")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hygni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6svd")
+}],
+"loop": true,
+"name": &"Water Rock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx31v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q01ie"]
+size = Vector2(16, 16)
+
+[node name="Rock" type="CharacterBody2D" groups=["Rock"]]
+script = ExtResource("1_k37ie")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_468di")
+
+[node name="RockSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 8)
+sprite_frames = SubResource("SpriteFrames_hygni")
+
+[node name="ForceDetect" type="Area2D" parent="."]
+position = Vector2(0, 8)
+collision_layer = 9
+
+[node name="ForceColl" type="CollisionShape2D" parent="ForceDetect"]
+shape = SubResource("RectangleShape2D_q01ie")
+
+[connection signal="area_entered" from="ForceDetect" to="." method="_on_force_detect_area_entered"]

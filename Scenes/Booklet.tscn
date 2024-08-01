@@ -1,0 +1,127 @@
+[gd_scene load_steps=9 format=3 uid="uid://cshi7555dy5to"]
+
+[ext_resource type="Texture2D" uid="uid://vkqnlpiup4rp" path="res://Assets/Booklet/Book.png" id="1_m4egc"]
+[ext_resource type="Script" path="res://Scripts/BookletScript.gd" id="1_tc7ku"]
+[ext_resource type="FontFile" uid="uid://djdgsdvyd6v8k" path="res://Assets/Corset 8 Basic.ttf" id="2_kg0ai"]
+[ext_resource type="Texture2D" uid="uid://cfws35pjixi7l" path="res://Assets/Booklet/BirchTree.png" id="4_rl88o"]
+[ext_resource type="Texture2D" uid="uid://bif8774kp5cw8" path="res://Assets/Booklet/Mushroom.png" id="5_s61qw"]
+
+[sub_resource type="Animation" id="Animation_4ffvu"]
+resource_name = "Default"
+
+[sub_resource type="Animation" id="Animation_xh0ma"]
+resource_name = "Summon"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Book:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.0583146),
+"update": 0,
+"values": [Vector2(-152, 96), Vector2(-152, -80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Book:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.2001),
+"transitions": PackedFloat32Array(1e-05, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3k01p"]
+_data = {
+"Default": SubResource("Animation_4ffvu"),
+"Summon": SubResource("Animation_xh0ma")
+}
+
+[node name="Booklet" type="Control"]
+top_level = true
+light_mask = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tc7ku")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Book" type="TextureRect" parent="CanvasLayer"]
+offset_left = -152.0
+offset_top = -80.0
+offset_right = 152.0
+offset_bottom = 80.0
+texture = ExtResource("1_m4egc")
+metadata/_edit_group_ = true
+
+[node name="Fungus Label" type="RichTextLabel" parent="CanvasLayer/Book"]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 96.0
+offset_right = 303.0
+offset_bottom = 136.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kg0ai")
+theme_override_font_sizes/normal_font_size = 16
+text = "Found in a cavern to the north."
+
+[node name="Birch Label" type="RichTextLabel" parent="CanvasLayer/Book"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 96.0
+offset_right = 132.0
+offset_bottom = 136.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kg0ai")
+theme_override_font_sizes/normal_font_size = 16
+text = "Found east of your home."
+
+[node name="BirchTree" type="TextureRect" parent="CanvasLayer/Book"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 83.0
+offset_bottom = 92.0
+texture = ExtResource("4_rl88o")
+
+[node name="Mushroom" type="TextureRect" parent="CanvasLayer/Book"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 40.0
+offset_right = 230.0
+offset_bottom = 86.0
+texture = ExtResource("5_s61qw")
+
+[node name="BirchColl" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = -80.0
+offset_top = -8.0
+offset_right = -16.0
+offset_bottom = 8.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kg0ai")
+theme_override_font_sizes/normal_font_size = 16
+text = "Collected!"
+
+[node name="MushroomColl" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 72.0
+offset_top = -8.0
+offset_right = 136.0
+offset_bottom = 8.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kg0ai")
+text = "Collected!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3k01p")
+}

@@ -1,0 +1,168 @@
+[gd_scene load_steps=19 format=3 uid="uid://bs4y1p1n1k20i"]
+
+[ext_resource type="Script" path="res://Scripts/GrassScript.gd" id="1_mgla3"]
+[ext_resource type="Texture2D" uid="uid://dtwqrhkisy7b2" path="res://Assets/Forest/GrassBurn.png" id="2_givtd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odymh"]
+atlas = ExtResource("2_givtd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65s2v"]
+atlas = ExtResource("2_givtd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkuxs"]
+atlas = ExtResource("2_givtd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4rju"]
+atlas = ExtResource("2_givtd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ufli"]
+atlas = ExtResource("2_givtd")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xifc5"]
+atlas = ExtResource("2_givtd")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5jf8"]
+atlas = ExtResource("2_givtd")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l40ix"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odymh")
+}],
+"loop": false,
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65s2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkuxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4rju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ufli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xifc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5jf8")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Fire",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxkmk"]
+size = Vector2(20.4213, 12.2209)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vubdy"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_7l7om"]
+resource_name = "Move Fire"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireArea/FireCollision:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 8), Vector2(2, 3), Vector2(-2, -3), Vector2(0, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8r47n"]
+_data = {
+"Move Fire": SubResource("Animation_7l7om")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p36ow"]
+size = Vector2(20, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7502d"]
+size = Vector2(2, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqwhw"]
+size = Vector2(2, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1vlb"]
+size = Vector2(20, 2)
+
+[node name="Grass" type="Node2D" groups=["Grass"]]
+script = ExtResource("1_mgla3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l40ix")
+animation = &"Fire"
+frame = 6
+frame_progress = 1.0
+
+[node name="BaseGrass" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="GrassCollision" type="CollisionShape2D" parent="BaseGrass"]
+scale = Vector2(0.788001, -1.30924)
+shape = SubResource("RectangleShape2D_rxkmk")
+
+[node name="FireArea" type="Area2D" parent="." groups=["Spread"]]
+collision_layer = 6
+collision_mask = 7
+
+[node name="FireCollision" type="CollisionShape2D" parent="FireArea"]
+shape = SubResource("RectangleShape2D_vubdy")
+debug_color = Color(0.999595, 0, 0.107884, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8r47n")
+}
+
+[node name="FireDetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Top" type="CollisionShape2D" parent="FireDetector"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_p36ow")
+debug_color = Color(0.992157, 0, 0.227451, 0.419608)
+
+[node name="Left" type="CollisionShape2D" parent="FireDetector"]
+position = Vector2(-9, 0)
+shape = SubResource("RectangleShape2D_7502d")
+debug_color = Color(0.994072, 0, 0.2279, 0.42)
+
+[node name="Right" type="CollisionShape2D" parent="FireDetector"]
+position = Vector2(9, 0)
+shape = SubResource("RectangleShape2D_gqwhw")
+debug_color = Color(0.992157, 0, 0.227451, 0.419608)
+
+[node name="Bottom" type="CollisionShape2D" parent="FireDetector"]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_j1vlb")
+debug_color = Color(0.992157, 0, 0.227451, 0.419608)
+
+[node name="CheckFire" type="Timer" parent="."]
+autostart = true
+
+[connection signal="area_entered" from="BaseGrass" to="." method="_on_base_grass_area_entered"]
+[connection signal="timeout" from="CheckFire" to="." method="_on_check_fire_timeout"]

@@ -1,0 +1,66 @@
+# DISPLAYED AFTER LETTER IS SHOWN
+~ start
+Alchemist: Hmm... I can do that, but I don't have all the ingredients for it right now.
+Alchemist: I should go out and collect them. I need some birch bark and a foxfire mushroom.
+Alchemist: Luckily I already know where those things are, it's written in my book. Off we go!
+=> END
+
+# FOREST SCENE
+~ Home
+Alchemist: I should really go out and look for those ingredients...
+=> END
+
+~ BirchFound
+set Global.diaPlaying = true
+Alchemist: There it is! Now all I gotta do is peel off some of the bark and...Done!
+Alchemist: Birch Bark collected!
+set Global.diaPlaying = false
+=> END
+
+# CAVEONE SCENE
+~ LadderNear
+Alchemist: There should be a ladder further ahead somewhere...
+=> END
+
+# CAVETWO SCENE
+~ UselessSign
+set Global.diaPlaying = true
+
+if Global.signDia == 0
+	Creator: Unfortunately I have nothing to satisfy your curiosity. I can give you a joke though!
+	Creator: What do chef's call their pants?
+	Creator: L'eggings.
+
+elif Global.signDia == 1
+	Creator: You want another joke? You're needy, go away.
+
+elif Global.signDia == 2
+	Creator: Fine. What do you call someone who lurks in the dark and comes out of nowhere?
+	Creator: The man behind you.
+	Creator: Haha, just kidding. The real answer is 'fun guy'.
+
+elif Global.signDia == 3
+	Creator: Thank you for reading my puns. I hope you had fun with this game!
+
+else
+	Creator: Do you want more? Too bad! Go and finish the game.
+	
+set Global.signDia += 1
+set Global.diaPlaying = false
+=> END
+
+~ MushroomFound
+set Global.diaPlaying = true
+Alchemist: Here they are! Wow, they really glow bright.
+Alchemist: I'll just pick a few of them and... Done!
+Alchemist: Mushrooms collected!
+set Global.diaPlaying = false
+=> END
+
+# ENDING SEQUENCE
+# Only the dialouge, there is more after this piece of dialogue seperate from this tool.
+~ Ending
+Alchemist: I have all the ingredients now! All I gotta do is go home and make that potion.
+
+set Global.endingReady = true
+=> END

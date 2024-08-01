@@ -1,0 +1,106 @@
+[gd_scene load_steps=13 format=3 uid="uid://dh64frbka3482"]
+
+[ext_resource type="Script" path="res://Scripts/ShrubScript.gd" id="1_crpr3"]
+[ext_resource type="Texture2D" uid="uid://lfj4njkdll5r" path="res://Assets/Forest/Shrub.png" id="2_kosww"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8iuv"]
+atlas = ExtResource("2_kosww")
+region = Rect2(0, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk27g"]
+atlas = ExtResource("2_kosww")
+region = Rect2(16, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v0sv"]
+atlas = ExtResource("2_kosww")
+region = Rect2(32, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dew6"]
+atlas = ExtResource("2_kosww")
+region = Rect2(48, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1l1a"]
+atlas = ExtResource("2_kosww")
+region = Rect2(64, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ihbw"]
+atlas = ExtResource("2_kosww")
+region = Rect2(80, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk2dm"]
+atlas = ExtResource("2_kosww")
+region = Rect2(96, 0, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6b4ds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8iuv")
+}],
+"loop": false,
+"name": &"Base",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk27g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v0sv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dew6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1l1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ihbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk2dm")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Burn",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvca5"]
+size = Vector2(16, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8noua"]
+size = Vector2(16, 17)
+
+[node name="Shrub" type="RigidBody2D" groups=["Shrub"]]
+collision_layer = 13
+collision_mask = 5
+mass = 0.01
+gravity_scale = 0.0
+freeze = true
+script = ExtResource("1_crpr3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6b4ds")
+animation = &"Base"
+
+[node name="FireArea" type="Area2D" parent="."]
+collision_layer = 13
+collision_mask = 5
+
+[node name="Collision" type="CollisionShape2D" parent="FireArea"]
+position = Vector2(-2, 4.5)
+shape = SubResource("RectangleShape2D_kvca5")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_8noua")
+debug_color = Color(0.122376, 0.632793, 0.394786, 0.42)
+
+[node name="FireCounter" type="Timer" parent="."]
+autostart = true
+
+[connection signal="area_entered" from="FireArea" to="." method="_on_fire_area_area_entered"]
+[connection signal="timeout" from="FireCounter" to="." method="_on_fire_counter_timeout"]

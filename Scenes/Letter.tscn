@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2mx4s3jn0j7l"]
+
+[ext_resource type="Texture2D" uid="uid://diaxkg43v305w" path="res://Assets/Dialouge/LetterBase.png" id="1_n24li"]
+[ext_resource type="FontFile" uid="uid://djdgsdvyd6v8k" path="res://Assets/Corset 8 Basic.ttf" id="2_d1243"]
+
+[node name="Letter" type="CanvasLayer"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 256.0
+offset_right = 405.0
+offset_bottom = 179.0
+scale = Vector2(3, 3)
+texture = ExtResource("1_n24li")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+metadata/_edit_lock_ = true
+
+[node name="Text" type="RichTextLabel" parent="."]
+offset_left = 296.0
+offset_top = 32.0
+offset_right = 656.0
+offset_bottom = 496.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_d1243")
+theme_override_font_sizes/normal_font_size = 32
+text = "I need your help! I've been in excruciating pain for the past 4 days. It's a sickness called 'Clover Cramps', but my Village doesn't have any remedies for it. Can you please make one? I'll give you anything!"

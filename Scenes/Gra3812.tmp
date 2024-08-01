@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://bs4y1p1n1k20i"]
+
+[ext_resource type="Texture2D" uid="uid://csm3ydfgehqtq" path="res://icon.svg" id="1_5ebco"]
+[ext_resource type="Script" path="res://Scripts/GrassScript.gd" id="1_mgla3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxkmk"]
+size = Vector2(20.4213, 12.2209)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vubdy"]
+size = Vector2(11, 11)
+
+[sub_resource type="Animation" id="Animation_7l7om"]
+resource_name = "Move Fire"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireArea/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1e-05, 1, 1e-05, 1e-05, 1e-05),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(4, 4), Vector2(4, -4), Vector2(-4, -4), Vector2(-4, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8r47n"]
+_data = {
+"Move Fire": SubResource("Animation_7l7om")
+}
+
+[node name="Grass" type="Node2D" groups=["Grass"]]
+script = ExtResource("1_mgla3")
+
+[node name="TestGrass" type="Sprite2D" parent="."]
+position = Vector2(0, 9.53674e-07)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_5ebco")
+
+[node name="BaseGrass" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseGrass"]
+position = Vector2(0.0460059, 0)
+scale = Vector2(0.788001, -1.30924)
+shape = SubResource("RectangleShape2D_rxkmk")
+
+[node name="FireArea" type="Area2D" parent="." groups=["Spread"]]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireArea"]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_vubdy")
+debug_color = Color(0.999595, 0, 0.107884, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8r47n")
+}
+
+[connection signal="area_entered" from="BaseGrass" to="." method="_on_base_grass_area_entered"]
+[connection signal="body_entered" from="BaseGrass" to="." method="_on_base_grass_body_entered"]

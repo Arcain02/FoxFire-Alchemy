@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx5sv5pais7dw"]
+
+[ext_resource type="Script" path="res://Scripts/LogScript.gd" id="1_5ag3g"]
+[ext_resource type="Texture2D" uid="uid://ckyswl4eew3ua" path="res://Assets/Forest/Log.png" id="2_blfb0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01474"]
+size = Vector2(48, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8nld"]
+size = Vector2(50, 18)
+
+[node name="Log" type="CharacterBody2D"]
+script = ExtResource("1_5ag3g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 16)
+texture = ExtResource("2_blfb0")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_01474")
+
+[node name="ForceDec" type="Area2D" parent="."]
+
+[node name="ForceColl" type="CollisionShape2D" parent="ForceDec"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_y8nld")
+
+[connection signal="area_entered" from="ForceDec" to="." method="_on_force_dec_area_entered"]

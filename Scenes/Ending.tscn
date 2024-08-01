@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbmslhdivt8bu"]
+
+[ext_resource type="Script" path="res://Scripts/EndingScript.gd" id="1_7qy3s"]
+[ext_resource type="PackedScene" uid="uid://c2mx4s3jn0j7l" path="res://Scenes/Letter.tscn" id="2_n77fa"]
+[ext_resource type="Texture2D" uid="uid://5uvw43a40g2l" path="res://Assets/UI Items/EnterButtonNormal.png" id="3_g3rfh"]
+[ext_resource type="FontFile" uid="uid://djdgsdvyd6v8k" path="res://Assets/Corset 8 Basic.ttf" id="4_rug27"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_c5v7s"]
+
+[sub_resource type="Animation" id="Animation_ellr0"]
+resource_name = "FadeLetter"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y57n7"]
+_data = {
+"FadeLetter": SubResource("Animation_ellr0")
+}
+
+[node name="Ending" type="Node2D"]
+script = ExtResource("1_7qy3s")
+
+[node name="Letter" parent="." instance=ExtResource("2_n77fa")]
+layer = 0
+
+[node name="BlackBack" type="TextureRect" parent="."]
+modulate = Color(0.197937, 0.197937, 0.197937, 1)
+offset_right = 976.0
+offset_bottom = 544.0
+texture = SubResource("CanvasTexture_c5v7s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 840.0
+offset_top = 504.0
+offset_right = 952.0
+offset_bottom = 536.0
+texture = ExtResource("3_g3rfh")
+
+[node name="ThankYou" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 216.0
+offset_top = 152.0
+offset_right = 808.0
+offset_bottom = 384.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("4_rug27")
+theme_override_font_sizes/normal_font_size = 32
+text = "Thank you for playing my game. It means the world to me that you played it through to the end. Please leave feedback on the itch page if you have any advice to give, and check the description for credits of all the assets I used."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y57n7")
+}
