@@ -2,6 +2,8 @@
  
 This is a prototype created for the Pirate Software 15 Game Jam, with the themes of Alchemy and Shadows. I am the only person who has directly contributed to this project, but I did use many other people's resources in order to make it possible.
 
+ Playable Version: https://arcain02.itch.io/foxfire-alchemy
+
  Player Sprite: Red Sprite 4 Directional Free Version, by PixiVan | https://pixivan.itch.io/red-sprite-4-directional-free-version 
  
  Primary Tileset Used (Forest): Forest Tileset, by PixiVan | https://pixivan.itch.io/top-down-forest-tileset 
